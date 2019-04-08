@@ -3,11 +3,13 @@ import { observer } from "mobx-react";
 import { withNavigation } from "react-navigation";
 
 // NativeBase Components
-import { Text, Button, List } from "native-base";
+import { Text, Button, List, Container, Content } from "native-base";
+import { StyleSheet } from "react-native";
 
 // Store
 import authStore from "../../stores/authStore";
 import CartStore from "../../stores/cartStore";
+//import styles from "../ItemDetail/styles";
 
 class MainPage extends Component {
   handleItemList = () => {
@@ -42,23 +44,33 @@ class MainPage extends Component {
 
   render() {
     return (
-      <List>
-        <Button full success onPress={this.handleItemList}>
-          <Text>View Product List</Text>
-        </Button>
-        <Button full warning onPress={this.handleProfile}>
-          <Text>View Profile</Text>
-        </Button>
-        <Button full danger onPress={this.handleMyCart}>
-          <Text>View MyCart</Text>
-        </Button>
+      <Container style={styles.container}>
+        <Content>
+          <Button block success onPress={this.handleItemList}>
+            <Text>View Product List</Text>
+          </Button>
+          <Button block warning onPress={this.handleProfile}>
+            <Text>View Profile</Text>
+          </Button>
+          <Button block info onPress={this.handleMyCart}>
+            <Text>View MyCart</Text>
+          </Button>
 
-        <Button full danger onPress={this.handleLogout}>
-          <Text>Logout</Text>
-        </Button>
-      </List>
+          <Button block danger onPress={this.handleLogout}>
+            <Text>Logout</Text>
+          </Button>
+        </Content>
+      </Container>
     );
   }
 }
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 2,
+    flexDirection: "row",
+    padding: 20,
+    marginTop: 100,
+    alignContent: "center",
+  },
+});
 export default withNavigation(observer(MainPage));

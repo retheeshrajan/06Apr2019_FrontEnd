@@ -16,7 +16,7 @@ class Profile extends Component {
 
   state = {
     first_name: "",
-    lastn_ame: "",
+    last_name: "",
     email: "",
   };
 
